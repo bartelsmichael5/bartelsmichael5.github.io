@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+	<!-- BEGIN CSS -->
+	<style>
+		/* TODO 1 */
+		.box {
+			width: 70px;
+			height: 70px;
+			background-color: purple;
+			font-size: 300%;
+			text-align: center;
+			display: block;
+			position: absolute;
+			top: 100px;
+			left: 0px;
+		}
+	</style>
+
+</head>
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box">?</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict'
+			/* global jQuery */
+
+			// jQuery stuff setup for you
+			var box = jQuery('.box');
+			var boardWidth = jQuery('.board').width();
+	
+			// TODO 2 - Variable declarations 
+			
+			var xPosition = 0;
+			var yPosition = 0;
+			var points = 0;
+			var speed = 10;
+			var direction = 1;
+			
+			var getRandomColor = function() {
+				var r =Math.ceil(Math.random()*255);
+				var g = Math.ceil(Math.random()*255);
+				var b = Math.ceil(Math.random()*255);
+				var colorString = "rgb(" + r + ", " + g + ", " + b + ")";
+				return(colorString);
+			};
+			
+			box.css('left', xPosition);
+			box.text(points);
+			
+			function update() {
+				// TODO 3 / 6 / 7 / 8
+				xPosition += speed * direction;
+				box.css('left', xPosition);
+				
+				
+				/** Use the boardWidth variable to calculate the right edge
+				of the screen!
+				
+				if (xPosition > boardWidth) {}
+				
+				*/
+				if (xPosition > 420) {
+					direction = -1;
+				}
+				
+				if (xPosition < 0) {
+					direction = 1;
+				}
+				
+			}
+
+
+			
+			function handleBoxClick() {
+				// TODO 4 / 5
+				points++;
+				box.text(points);
+				box.css('top', yPosition);
+				var rColor = getRandomColor();
+				box.css('background-color', rColor);
+				xPosition = Math.random() * 420;
+				yPosition = Math.random() * 500;
+				speed+=3;
+			}
+
+
+			//this executes the update function code every 50 milliseconds
+			setInterval(update, 50);
+			// this executes the handleBoxClick function code every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})();
+	</script>
+</body>
+</html>

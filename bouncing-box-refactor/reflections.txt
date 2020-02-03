@@ -1,0 +1,13 @@
+//1/22/20//
+
+1.) If the js file is loaded before the jquery file, the engine will not know what to do with the script, as it primarily uses $ functions from that library.
+
+2.) The jquery is being received by a CDN, as evidenced via the src.
+
+//TODO 6//
+
+1.) The pros of refactoring into separate files is that when you need to edit any of the 3 languages used in this project, each one is localized.
+    The cons is that if your code is separated, it may be hard to find when there are multiple different sources of both css and js in a multi-website setup.
+
+2.) The pros of factoring your functions is that they are more readable to others, and allow for more efficiency.
+    The cons are that comments can clutter your files, and too many functions can create more code and more space.
